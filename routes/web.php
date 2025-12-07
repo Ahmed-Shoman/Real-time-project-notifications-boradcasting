@@ -1,12 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserLogoutController;
+use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +63,8 @@ Route::post('/admin/notifications/mark-as-read', function () {
     auth('admin')->user()->unreadNotifications->markAsRead();
     return response()->json(['status' => 'success']);
 })->name('admin.notifications.markAsRead');
+
+Route::post('/admin/logout', [App\Http\Controllers\AdminHomeController::class, 'logout'])->name('admin.logout');
+
+
+Route::post('/logout', [UserLogoutController::class, 'logout'])->name('logout');

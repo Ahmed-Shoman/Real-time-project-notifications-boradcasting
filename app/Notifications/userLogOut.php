@@ -7,18 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewUserRegisterdNotification extends Notification
+class userLogOut extends Notification
 {
     use Queueable;
 
-    public $user;
+
+        public $user;
+
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($newUser)
+     public function __construct($user)
     {
-        $this->user =$newUser;
+        $this->user = $user;
     }
 
     /**
@@ -28,7 +30,7 @@ class NewUserRegisterdNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database' , 'broadcast'];
+        return ['database'];
     }
 
     /**
@@ -52,7 +54,7 @@ class NewUserRegisterdNotification extends Notification
         return [
             'name' => $this->user->name,
             'email' => $this->user->email,
-            'message' => 'New User Registerd Called ' . $this->user->name,
+            'message' =>'user log out '. $this->user->name,
         ];
     }
 }

@@ -45,4 +45,18 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/register');
     }
+
+//     public function logout(Request $request)
+// {
+//     $user = Auth::user();
+
+//     $user->notify(new UserLogOut($user));
+
+//     Auth::logout();
+
+//     $request->session()->invalidate();
+//     $request->session()->regenerateToken();
+
+//     return redirect('/');
+// }
 }
