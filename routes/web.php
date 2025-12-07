@@ -48,8 +48,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         ##------------------------------------------------------- ADMIN INDEX PAGE
         Route::get('/', AdminHomeController::class)->name('index');
-        
+
     });
 
     require __DIR__ . '/adminAuth.php';
 });
+
+
+Route::post('/admin/notifications/mark-as-read', function () {
+    auth('admin')->user()->unreadNotifications->markAsRead();
+    return response()->json(['status' => 'success']);
+})->name('admin.notifications.markAsRead');
